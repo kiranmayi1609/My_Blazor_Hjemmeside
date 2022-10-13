@@ -1,0 +1,42 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Lige spise </PageTitle>
+
+@using My_Blazor_Hjemmeside.Data
+
+<h1>Lige spise </h1>
+
+<p>Nyd din mad....</p>
+
+@if (menuList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Item_Name</th>
+                <th>Price (F)</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menu in menuList)
+            {
+                <tr>
+                    <td>@menu.Id</td>
+                    <td>@menu.Item_Name</td>
+                    <td>@menu.Amount</td>
+                    <td>@menu.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<Menu> menuList = new SQL().ReadMenu();
+}
